@@ -1,10 +1,13 @@
 import React from 'react'
 
-export const Home = ({usuario, otroDato, cosa}) => {
+export const Home = ({usuario, other}) => {
     return (
         <>
             <h1>Bienvenido {usuario.fullName}</h1>
-            {/* <h2>hola {otroDato} y {cosa}</h2> */}
+            <p>{other}</p>
+            {/* <ComponenteHijo otherUser={usuario}>
+
+            </ComponenteHijo> */}
         </>
     )
 }

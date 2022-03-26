@@ -1,27 +1,28 @@
 import React from 'react'
 import { Layout } from 'antd';
 import { Home } from './pages/Home/Home';
-const { Header, Footer, Sider, Content } = Layout;
+import { Header } from './shared/Header/Header';
+import { Sidebar } from './shared/Sidebar/Sidebar';
+import { Products } from './pages/Products/Products';
+import { ProductsFromDB } from './constants/productsFromDB'
+const { Footer, Sider, Content } = Layout;
 
 
 export const App = () => {
-     // const user = {
-    //     fullName: 'John Doe',
-    //     role: 'ADMIN_ROLE'
-    // }
-    // localStorage.setItem('user', JSON.stringify(user))
-    const user = JSON.parse(localStorage.getItem('user')) || { fullName: 'Unknown', role: 'GUEST_ROLE'};
+    const user = JSON.parse(localStorage.getItem('user')) || {}
     const anotherInfo = 'Cualquier otra cosa'
+    const products = ProductsFromDB
     return (
         <>
             <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Sider>Sider</Sider>
+                <Header user={user} role={user.role}/>
+                <Layout className='full-height'>
+                    <Sider>
+                        <Sidebar user={user} />
+                    </Sider>
                     <Content>
-                        <Home usuario={user} otroDato={anotherInfo} cosa="godashe">
-
-                        </Home>
+                        <Home usuario={user} other={anotherInfo}></Home>
+                        <Products productsDB={products} />
                     </Content>
                 </Layout>
                 <Footer>Footer</Footer>
